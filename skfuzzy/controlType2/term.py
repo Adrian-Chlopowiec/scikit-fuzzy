@@ -91,7 +91,7 @@ class WeightedTerm(object):
     was not assigned, they default to a weight of 1.0.
     """
 
-    activation = (StatefulProperty(None), StatefulProperty(None))
+    activation = StatefulProperty(None)
 
     def __init__(self, term, weight=1.0):
         """

@@ -31,4 +31,10 @@ def defuzz(x, mfx):
     - InconsistentMFDataError : When the length of the 'x' and the fuzzy
         membership function arrays are not equal.
     """
-    pass
+    teta = np.mean(mfx[0], mfx[1])
+    tetaL = teta
+    tetaR = teta
+
+    cprim = np.average(tetaL, weights=x)
+
+

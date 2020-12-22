@@ -602,8 +602,7 @@ class CrispValueCalculator(object):
                 raise NoTermMembershipsError(self.var)
 
             try:
-                return defuzz(ups_universe, output_mf,
-                              self.var.defuzzify_method)
+                return defuzz(ups_universe, output_mf)
             except DefuzzEmptyMembershipError:
                 raise EmptyMembershipError(self.var)
         else:
