@@ -99,13 +99,14 @@ class FuzzyVariable(object):
 
         mf = item.mf
 
-        if mf.size != self.universe.size:
+        if mf[0].size != self.universe.size or mf[1].size != self.universe.size:
             raise ValueError("New membership function {0} must be equivalent "
                              "in length to the universe variable.\n"
                              "Expected {1}, got {2}.".format(
                                  key, self.universe.size, mf.size))
 
-        if (mf.max() > 1. + 1e-6) or (mf.min() < 0 - 1e-6):
+        if (mf[0].max() > 1. + 1e-6) or (mf[0].min() < 0 - 1e-6) or \
+                (mf[1].max() > 1. + 1e-6) or (mf[1].min() < 0 - 1e-6):
             raise ValueError("Membership function {0} contains values out of "
                              "range. Allowed range is [0, 1].".format(key))
 
