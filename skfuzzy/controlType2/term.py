@@ -50,7 +50,7 @@ class Term(TermPrimitive):
     """
 
     # State variables
-    membership_value = (StatefulProperty(None), StatefulProperty(None))
+    membership_value = StatefulProperty(None)
     cuts = (StatefulProperty({}), StatefulProperty({}))
 
     def __init__(self, label, membership_function):

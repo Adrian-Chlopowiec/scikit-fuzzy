@@ -660,14 +660,19 @@ class CrispValueCalculator(object):
             # Faster to aggregate as list w/duplication
             interp = _interp_universe_fast(self.var.universe,
                                            term.mf,
-                                           term._cut).tolist()
+                                           term._cut[0]).tolist()
             # assert isinstance(interp, List)
+            new_values.extend(interp)
+
+            interp = _interp_universe_fast(self.var.universe,
+                                           term.mf,
+                                           term._cut[1]).tolist()
             new_values.extend(interp)
 
         new_universe = np.union1d(self.var.universe, new_values)
 
         # Initialize membership
-        output_mf = np.zeros_like(new_universe, dtype=np.float64)
+        output_mf = (np.zeros_like(new_universe, dtype=np.float64), np.zeros_like(new_universe, dtype=np.float64))
 
         # Build output membership function
         term_mfs = {}
@@ -675,12 +680,16 @@ class CrispValueCalculator(object):
             if term._cut is None:
                 continue  # No membership defined for this adjective
 
-            upsampled_mf = interp_membership(self.var.universe,
-                                             term.mf,
-                                             new_universe)
+            upsampled_mf = (interp_membership(self.var.universe,
+                                             term.mf[0],
+                                             new_universe),
+                            interp_membership(self.var.universe,
+                                              term.mf[1],
+                                              new_universe))
 
-            term_mfs[label] = np.minimum(term._cut, upsampled_mf)
-            np.maximum(output_mf, term_mfs[label], output_mf)
+            term_mfs[label] = (np.minimum(term._cut[0], upsampled_mf[0]), np.minimum(term._cut[1], upsampled_mf[1]))
+            np.maximum(output_mf[0], term_mfs[label][0], output_mf[0])
+            np.maximum(output_mf[1], term_mfs[label][1], output_mf[1])
 
         return new_universe, output_mf, term_mfs
 
