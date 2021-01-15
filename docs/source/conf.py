@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# scikit-fuzzy documentation build configuration file, created by
+# scikitfuzzy documentation build configuration file, created by
 # sphinx-quickstart on Wed Feb  5 18:44:22 2014.
 #
 # This file is execfile()d with the current directory set to its
@@ -88,7 +88,7 @@ plot_gallery = True
 master_doc = 'index'
 
 # General information about the project.
-project = u'scikit-fuzzy'
+project = u'scikitfuzzy'
 copyright = u'2014, the scikit-image team'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -143,7 +143,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'scikit-fuzzy'
+html_theme = 'scikitfuzzy'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -245,7 +245,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    ('index', 'scikit-fuzzy.tex', u'The scikit-fuzzy Documentation',
+    ('index', 'scikitfuzzy.tex', u'The scikitfuzzy Documentation',
      u'The scikit-image team', 'manual'),
 ]
 
@@ -297,8 +297,8 @@ latex_domain_indices = False
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'scikit-fuzzy', u'scikit-fuzzy Documentation',
-     [u'the scikit-fuzzy team'], 1)
+    ('index', 'scikitfuzzy', u'scikitfuzzy Documentation',
+     [u'the scikitfuzzy team'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -311,8 +311,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'scikit-fuzzy', u'scikit-fuzzy Documentation',
-   u'the scikit-fuzzy team', 'scikit-fuzzy', 'One line description of project.',
+  ('index', 'scikitfuzzy', u'scikitfuzzy Documentation',
+   u'the scikitfuzzy team', 'scikitfuzzy', 'One line description of project.',
    'Miscellaneous'),
 ]
 

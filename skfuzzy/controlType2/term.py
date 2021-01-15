@@ -51,7 +51,7 @@ class Term(TermPrimitive):
 
     # State variables
     membership_value = StatefulProperty(None)
-    cuts = (StatefulProperty({}), StatefulProperty({}))
+    cuts = StatefulProperty({})
 
     def __init__(self, label, membership_function):
         super(Term, self).__init__()
@@ -136,16 +136,16 @@ class _MembershipValueAccessor(object):
         assert isinstance(key, ControlSystemSimulation)
 
         # Perform aggregation to determine membership
-        term1 = (self.agg.term1.membership_value[0][key], self.agg.term1.membership_value[1][key])
+        term1 = self.agg.term1.membership_value[key]
         if self.agg.term2 is not None:
-            term2 = (self.agg.term2.membership_value[0][key], self.agg.term2.membership_value[1][key])
+            term2 = self.agg.term2.membership_value[key]
 
         if self.agg.kind == 'and':
             return self.agg.agg_methods.and_func(term1[0], term2[0]), self.agg.agg_methods.and_func(term1[1], term2[1])
         elif self.agg.kind == 'or':
             return self.agg.agg_methods.or_func(term1[0], term2[0]), self.agg.agg_methods.or_func(term1[1], term2[1])
         elif self.agg.kind == 'not':
-            return 1. - self.agg.term1.membership_value[0][key], 1. - self.agg.term1.membership_value[1][key]
+            return 1. - self.agg.term1.membership_value[key]
         else:
             raise NotImplementedError()
 

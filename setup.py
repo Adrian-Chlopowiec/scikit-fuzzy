@@ -1,12 +1,12 @@
 #! /usr/bin/env python
 
-descr = """scikit-fuzzy (a.k.a. `skfuzzy`): Fuzzy logic toolbox for Python.
+descr = """scikitfuzzy (a.k.a. `skfuzzy`): Fuzzy logic toolbox for Python.
 
 This package implements many useful tools for projects involving fuzzy logic,
 also known as grey logic.
 """
 
-DISTNAME            = 'scikit-fuzzy'
+DISTNAME            = 'scikitfuzzy'
 DESCRIPTION         = 'Fuzzy logic toolkit for SciPy'
 LONG_DESCRIPTION    = descr
 MAINTAINER          = 'Joshua Warner'

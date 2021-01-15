@@ -13,7 +13,7 @@ from .fuzzyvariable import FuzzyVariable
 from .rule import Rule
 from .term import Term, TermAggregate, WeightedTerm
 from .visualization import ControlSystemVisualizer
-from ..defuzzify import (
+from ..defuzzifyType2 import (
     EmptyMembershipError as DefuzzEmptyMembershipError, defuzz,
 )
 from ..fuzzymath.fuzzy_ops import _interp_universe_fast, interp_membership
@@ -429,7 +429,7 @@ class ControlSystemSimulation(object):
         #  be if the consequent has a weight, which we would apply now.
         for c in rule.consequent:
             assert isinstance(c, WeightedTerm)
-            c.activation[self] = rule.aggregate_firing[self] * c.weight
+            c.activation[self] = (rule.aggregate_firing[self][0] * c.weight, rule.aggregate_firing[self][1] * c.weight)
 
         # Step 3: Accumulation.  Apply the activation to each consequent,
         #   accumulating multiple rule firings into a single membership value.
@@ -658,13 +658,13 @@ class CrispValueCalculator(object):
 
             # Faster to aggregate as list w/duplication
             interp = _interp_universe_fast(self.var.universe,
-                                           term.mf,
+                                           term.mf[0],
                                            term._cut[0]).tolist()
             # assert isinstance(interp, List)
             new_values.extend(interp)
 
             interp = _interp_universe_fast(self.var.universe,
-                                           term.mf,
+                                           term.mf[1],
                                            term._cut[1]).tolist()
             new_values.extend(interp)
 

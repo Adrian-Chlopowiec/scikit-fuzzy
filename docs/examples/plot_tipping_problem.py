@@ -30,7 +30,7 @@ The output variable is simply the tip amount, in percentage points:
 
 For the purposes of discussion, let's say we need 'high', 'medium', and 'low'
 membership functions for both input variables and our output variable. These
-are defined in scikit-fuzzy as follows
+are defined in scikitfuzzy as follows
 
 """
 import numpy as np

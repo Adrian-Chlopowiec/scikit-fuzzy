@@ -1,5 +1,5 @@
 """
-imops.py : scikit-fuzzy subpackage for 2-D fuzzy processing, usually applied
+imops.py : scikitfuzzy subpackage for 2-D fuzzy processing, usually applied
            to image data.
 
 """

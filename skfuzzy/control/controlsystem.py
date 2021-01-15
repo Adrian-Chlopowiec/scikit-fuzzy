@@ -396,7 +396,7 @@ class ControlSystemSimulation(object):
             try:
                 consequent.output[self] = \
                     CrispValueCalculator(consequent, self).defuzz()
-            except (NoTermMembershipsError, EmptyMembershipError) as error:
+            except (NoTermMembershipsError, EmptyMembershipError, Exception) as error:
                 if self.lenient:
                     continue
                 else:
@@ -606,6 +606,8 @@ class CrispValueCalculator(object):
                               self.var.defuzzify_method)
             except DefuzzEmptyMembershipError:
                 raise EmptyMembershipError(self.var)
+            except Exception as error:
+                raise error
         else:
             # Calculate using array-aware version, one cut at a time.
             output = np.zeros(self.sim._array_shape, dtype=np.float64)

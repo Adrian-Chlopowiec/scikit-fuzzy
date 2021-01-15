@@ -34,12 +34,12 @@ def defuzz(x, mfx):
         membership function arrays are not equal.
     """
 
-    teta = np.mean(mfx[0], mfx[1])
+    teta = (mfx[0] + mfx[1]) / 2.0
     yL, L = __find_y(x, teta.copy(), mfx[1], mfx[0])
     yR, R = __find_y(x, teta.copy(), mfx[0], mfx[1])
 
-    yL = __calc_y_val(x, L, mfx[1], mfx[0])
-    yR = __calc_y_val(x, R, mfx[0], mfx[1])
+    # yL = __calc_y_val(x, L, mfx[1], mfx[0])
+    # yR = __calc_y_val(x, R, mfx[0], mfx[1])
     return (yL + yR) / 2
 
 
@@ -52,7 +52,7 @@ def __find_y(universe, teta, first_mf, second_mf):
                 break
             k += 1
 
-        for i, l_val, r_val in enumerate(first_mf, second_mf):
+        for i, l_val, r_val in zip(range(0, len(first_mf)), first_mf, second_mf):
             if i <= k:
                 new_teta[i] = l_val
             else:
@@ -62,10 +62,14 @@ def __find_y(universe, teta, first_mf, second_mf):
 
     cprim = np.average(universe, weights=teta)
     csecond, teta, k = calc_c_second(teta, cprim)
-
-    while csecond - cprim <= EPSILON:
+    
+    i = 0
+    while abs(csecond - cprim) >= EPSILON:
         cprim = csecond
         csecond, teta, k = calc_c_second(teta, cprim)
+        i += 1
+        if i > 1000:
+            raise Exception("Probably endless loop in defuzz")
 
     return csecond, k
 

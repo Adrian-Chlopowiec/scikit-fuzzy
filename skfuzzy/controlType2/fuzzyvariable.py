@@ -95,15 +95,15 @@ class FuzzyVariable(object):
         else:
             # Try to create a term from item, assuming it is a membership
             # function
-            item = Term(key, np.asarray(item))
+            item = Term(key, (np.asarray(item[0]), np.asarray(item[1])))
 
         mf = item.mf
 
         if mf[0].size != self.universe.size or mf[1].size != self.universe.size:
             raise ValueError("New membership function {0} must be equivalent "
                              "in length to the universe variable.\n"
-                             "Expected {1}, got {2}.".format(
-                                 key, self.universe.size, mf.size))
+                             "Expected {1}, got {2} or {3}.".format(
+                                 key, self.universe.size, mf[0].size, mf[1].size))
 
         if (mf[0].max() > 1. + 1e-6) or (mf[0].min() < 0 - 1e-6) or \
                 (mf[1].max() > 1. + 1e-6) or (mf[1].min() < 0 - 1e-6):

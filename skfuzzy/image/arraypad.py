@@ -1217,7 +1217,7 @@ def pad(array, pad_width, mode=None, **kwargs):
     Notes
     -----
     This function exists in NumPy >= 1.7.0, but is included in
-    ``scikit-fuzzy`` for backwards compatibility with earlier versions.
+    ``scikitfuzzy`` for backwards compatibility with earlier versions.
 
     For an array with rank greater than 1, some of the padding of later
     axes is calculated from padding of previous axes.  This is easiest to
